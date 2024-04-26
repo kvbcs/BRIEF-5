@@ -28,7 +28,7 @@ const ctrlCreateListing = async (req, res) => {
 		res.status(200).json(rows);
 	} catch (error) {
 		console.log(error.stack);
-		res.status(400).json({ msg: "Error creating a listing" });
+		res.status(400).json({ Error: "Error creating a listing" });
 	}
 };
 
@@ -40,50 +40,87 @@ const ctrlAllListings = async (req, res) => {
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
-		console.log(error);
-		res.status(400).json({ msg: "Error getting all equipements" });
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error getting all equipements" });
 	}
 };
 
-//TODO: fixe equipement id mais sinon ca marche quoi
-const ctrlDeleteListing = async (req, res) => {
-	if (!req.body.name) {
-		res.status(400).json({ error: "Name field is missing" });
-	}
-	const name = req.body.name;
-	const equipement_id = req.params.equipement_id;
+const ctrlOneListing = async (req, res) => {
+	const id = req.params.id;
 	try {
-		const [rows, fields] = await pool.query(
-			`DELETE FROM equipement WHERE name = "${name}"`
-		);
+		const sql = `SELECT * FROM equipement WHERE equipement_id=?`;
+		const values = [id];
+		const [rows] = await pool.execute(sql, values);
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
-		console.log(error);
-		res.status(400).json({ msg: "Error deleting an equipement" });
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error getting one listing" });
 	}
 };
 
-//TODO: fixe update ca marche mais ca transforme en 0
-const ctrlUpdateListing = async (req, res) => {
+const ctrlDeleteListing = async (req, res) => {
+	const equipement_id = req.body.equipement_id;
+
 	if (!req.body.equipement_id) {
 		res.status(400).json({ error: "Equipement ID is missing" });
 	}
-	const equipement_id = req.body.equipement_id;
-	const name = req.body.name;
-	const description = req.body.description;
-	const image = req.body.image;
-	const category = req.body.category;
-	const stock = req.body.stock;
 	try {
 		const [rows, fields] = await pool.query(
-			`UPDATE equipement SET name = "${name}" OR image = "${image}" OR description = "${description}" OR category = "${category}" OR stock = "${stock}" WHERE equipement_id = "${equipement_id}"`
+			`DELETE FROM equipement WHERE equipement_id = "${equipement_id}"`
 		);
+		if (rows.affectedRows === 0) {
+			res.status(400).json({ Error: "This equipement does not exist" });
+			return;
+		}
 		console.log(rows);
-		res.status(200).json(rows);
+		res.status(200).json({ Success: "Deleted listing successfull !" });
 	} catch (error) {
-		console.log(error);
-		res.status(400).json({ msg: "Error updating an equipement" });
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error deleting a listing" });
+	}
+};
+
+const ctrlUpdateListing = async (req, res) => {
+	if (!req.params.id) {
+		res.status(400).json({ error: "Equipement ID is missing" });
+	}
+	const id = req.params.id;
+	const { name, description, image, category, stock } = req.body;
+	let data = [];
+	const values = [];
+	try {
+		if (name) {
+			data.push("name=?");
+			values.push(name);
+		}
+		if (description) {
+			data.push("description=?");
+			values.push(description);
+		}
+		if (image) {
+			data.push("image=?");
+			values.push(image);
+		}
+		if (category) {
+			data.push("category=?");
+			values.push(category);
+		}
+		if (stock) {
+			data.push("stock=?");
+			values.push(stock);
+		}
+		if (values.length > 0) {
+			values.push(id);
+			data = data.join(",");
+			console.log(data, values);
+			const sql = `UPDATE equipement SET ${data} WHERE equipement_id = ?`;
+			const [rows] = await pool.execute(sql, values);
+			res.status(200).json(rows);
+		}
+	} catch (error) {
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error updating an equipement" });
 	}
 };
 
@@ -92,4 +129,5 @@ module.exports = {
 	ctrlAllListings,
 	ctrlDeleteListing,
 	ctrlUpdateListing,
+	ctrlOneListing,
 };

@@ -9,8 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.use("/", userRouter);
-app.use("/", listingRouter);
+app.use("/user", userRouter);
+app.use("/listing", listingRouter);
 
 app.listen(4000);
 console.log("Server is running on PORT 4000");
