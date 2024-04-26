@@ -22,7 +22,7 @@ const verifyUser = async (req, res, next) => {
 
 	if (!validator.isEmail(email)) {
 		return res.json({
-			Error: "Your email must follow this example : name@mail.com",
+			Error: "Invalid email (example@gmail.com)",
 		});
 	}
 	if (!validator.isNumeric(phone_number)) {
@@ -38,4 +38,17 @@ const verifyUser = async (req, res, next) => {
 	next();
 };
 
-module.exports = { verifyUser };
+const verifyListing = async (req, res, next) => {
+	const stock = req.body.stock;
+
+	if (!validator.isInt(stock)) {
+		return res.json({
+			Error: "Your stock must contain numbers",
+		});
+	}
+	req.stock = stock;
+
+	next();
+};
+
+module.exports = { verifyUser, verifyListing };

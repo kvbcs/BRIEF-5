@@ -6,10 +6,11 @@ const {
 	ctrlUpdateListing,
 	ctrlOneListing,
 } = require("../ListingController");
+const { verifyListing } = require("../../Middlewares/middlewares");
 
 const listingRouter = express.Router();
 
-listingRouter.post("/create", ctrlCreateListing);
+listingRouter.post("/create", verifyListing, ctrlCreateListing);
 listingRouter.get("/all", ctrlAllListings);
 listingRouter.get("/:id", ctrlOneListing);
 listingRouter.delete("/delete", ctrlDeleteListing);

@@ -50,7 +50,13 @@ const ctrlRegister = async (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	//TODO: ajouter un vérificateur duplicata de phone number
+	const values = [phone_number];
+	const sql = `SELECT phone_number FROM users WHERE phone_number = ?`;
+	const [result] = await pool.execute(sql, values);
+	if (result.length !== 0) {
+		res.status(400).json({ Error: "Phone number already exists" });
+		return;
+	}
 	try {
 		const values = [email];
 		const sql = `SELECT email FROM users WHERE email = ?`;
