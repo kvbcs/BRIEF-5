@@ -50,6 +50,7 @@ const ctrlRegister = async (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
+	//TODO: ajouter un vérificateur duplicata de phone number
 	try {
 		const values = [email];
 		const sql = `SELECT email FROM users WHERE email = ?`;
