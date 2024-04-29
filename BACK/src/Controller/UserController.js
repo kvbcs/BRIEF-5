@@ -91,7 +91,6 @@ const ctrlRegister = async (req, res) => {
 	}
 };
 
-//TODO : comparer le password avec users PASSWORD
 const ctrlLogin = async (req, res) => {
 	if (!req.body.email || !req.body.password) {
 		res.status(400).json({ Error: "Missing Fields" });
@@ -103,7 +102,7 @@ const ctrlLogin = async (req, res) => {
 	try {
 		const values = [email];
 		const sql = `SELECT * FROM users WHERE email = ?`;
-		const [rows] = await pool.query(sql, values);
+		const [rows] = await pool.execute(sql, values);
 
 		console.log(rows);
 
@@ -145,9 +144,10 @@ const ctrlDeleteUser = async (req, res) => {
 	let id = req.params.id;
 
 	try {
-		const [rows, fields] = await pool.query(
-			`DELETE FROM users WHERE user_id = "${id}"`
-		);
+		const values = [id];
+		const sql = `DELETE FROM users WHERE user_id = ?`;
+		const [rows] = await pool.execute(sql, values);
+
 		console.log(rows);
 		res.status(200).json({ Success: "Deleted user successfull !" });
 	} catch (error) {

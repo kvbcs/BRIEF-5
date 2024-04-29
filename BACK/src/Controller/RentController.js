@@ -16,10 +16,9 @@ const ctrlCreateRent = async (req, res) => {
 	const equipement_id = req.params.equipement_id;
 
 	try {
-		const [rows, fileds] = await pool.query(
-			`INSERT INTO equipement_rent VALUES (NULL, "${user_id}", "${equipement_id}", "${rent_start}", "${rent_end}", "${price}")
-        `
-		);
+		const values = [user_id, equipement_id, rent_start, rent_end, price];
+		const sql = `INSERT INTO equipement_rent VALUES (NULL, ?, ?, ?, ?, ?)`;
+		const [rows, fileds] = await pool.execute(sql, values);
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
@@ -93,9 +92,9 @@ const ctrlDeleteRent = async (req, res) => {
 	const id = req.params.id;
 
 	try {
-		const [rows, fields] = await pool.query(
-			`DELETE FROM equipement_rent WHERE equipement_rent_id = "${id}"`
-		);
+		const values = [id];
+		const sql = `DELETE FROM equipement_rent WHERE equipement_rent_id = ?`;
+		const [rows, fields] = await pool.execute(sql, values);
 		if (rows.affectedRows === 0) {
 			res.status(400).json({ Error: "This rent does not exist" });
 			return;

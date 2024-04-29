@@ -21,9 +21,9 @@ const ctrlCreateListing = async (req, res) => {
 	const category = req.body.category;
 	const stock = req.body.stock;
 	try {
-		const [rows, fileds] = await pool.query(
-			`INSERT INTO equipement VALUES (NULL, "${name}", "${image}", "${description}", "${category}", "${stock}")`
-		);
+		const values = [name, description, image, category, stock];
+		const sql = `INSERT INTO equipement VALUES (NULL, ?, ?, ?, ?, ?)`;
+		const [rows, fileds] = await pool.execute(sql, values);
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
@@ -35,7 +35,7 @@ const ctrlCreateListing = async (req, res) => {
 const ctrlAllListings = async (req, res) => {
 	try {
 		const [rows, fields] = await pool.query(
-			"SELECT name, description, category, stock FROM equipement"
+			"SELECT name, image, description, category, stock FROM equipement"
 		);
 		console.log(rows);
 		res.status(200).json(rows);
@@ -63,9 +63,9 @@ const ctrlDeleteListing = async (req, res) => {
 	const id = req.params.id;
 
 	try {
-		const [rows, fields] = await pool.query(
-			`DELETE FROM equipement WHERE equipement_id = "${id}"`
-		);
+		const values = [id];
+		const sql = `DELETE FROM equipement WHERE equipement_id = ?`;
+		const [rows] = await pool.execute(sql, values);
 		if (rows.affectedRows === 0) {
 			res.status(400).json({ Error: "This equipement does not exist" });
 			return;
