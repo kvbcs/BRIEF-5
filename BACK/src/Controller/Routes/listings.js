@@ -13,7 +13,7 @@ const listingRouter = express.Router();
 listingRouter.post("/create", verifyListing, ctrlCreateListing);
 listingRouter.get("/all", ctrlAllListings);
 listingRouter.get("/:id", ctrlOneListing);
-listingRouter.delete("/delete", ctrlDeleteListing);
+listingRouter.delete("/delete/:id", ctrlDeleteListing);
 listingRouter.patch("/update/:id", ctrlUpdateListing);
 
 module.exports = { listingRouter };

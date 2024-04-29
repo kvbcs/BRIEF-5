@@ -109,11 +109,10 @@ const ctrlLogin = async (req, res) => {
 
 const ctrlDeleteUser = async (req, res) => {
 	let id = req.params.id;
-	const email = req.body.email;
 
 	try {
 		const [rows, fields] = await pool.query(
-			`DELETE FROM users WHERE email = "${email}"`
+			`DELETE FROM users WHERE user_id = "${id}"`
 		);
 		console.log(rows);
 		res.status(200).json({ Success: "Deleted user successfull !" });

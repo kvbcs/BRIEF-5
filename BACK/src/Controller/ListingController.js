@@ -60,14 +60,11 @@ const ctrlOneListing = async (req, res) => {
 };
 
 const ctrlDeleteListing = async (req, res) => {
-	const equipement_id = req.body.equipement_id;
+	const id = req.params.id;
 
-	if (!req.body.equipement_id) {
-		res.status(400).json({ error: "Equipement ID is missing" });
-	}
 	try {
 		const [rows, fields] = await pool.query(
-			`DELETE FROM equipement WHERE equipement_id = "${equipement_id}"`
+			`DELETE FROM equipement WHERE equipement_id = "${id}"`
 		);
 		if (rows.affectedRows === 0) {
 			res.status(400).json({ Error: "This equipement does not exist" });
@@ -82,13 +79,11 @@ const ctrlDeleteListing = async (req, res) => {
 };
 
 const ctrlUpdateListing = async (req, res) => {
-	if (!req.params.id) {
-		res.status(400).json({ error: "Equipement ID is missing" });
-	}
 	const id = req.params.id;
 	const { name, description, image, category, stock } = req.body;
 	let data = [];
 	const values = [];
+
 	try {
 		if (name) {
 			data.push("name=?");
