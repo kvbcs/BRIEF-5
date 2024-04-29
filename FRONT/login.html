@@ -8,13 +8,9 @@
 	</head>
 	<body>
 		<header>
-			<h2>CineRent</h2>
-			<nav>
-				<ul>
-					<a href="index.html"><li>Home</li></a>
-					<a href="myRents.html"><li>My Rents</li></a>
-				</ul>
-			</nav>
+			<a href="index.html"><h2>CineRent</h2></a>
+
+			<a href="index.html"><button>Back to Main Menu</button></a>
 		</header>
 		<main>
 			<div class="form">
@@ -22,6 +18,7 @@
 
 				<label for="email">Email</label>
 				<input
+					class="email"
 					type="text"
 					name="email"
 					placeholder="Enter your email..."
@@ -30,13 +27,18 @@
 
 				<label for="password">Password</label>
 				<input
+					class="password"
 					type="password"
 					name="password"
 					placeholder="Enter your first name..."
 					required
 				/>
-				<button>Submit</button>
+				<button onclick="handleLogin()">Submit</button>
 			</div>
 		</main>
+		<footer>
+			<h2>Copyright - 2024</h2>
+		</footer>
 	</body>
+	<script src="auth.js"></script>
 </html>

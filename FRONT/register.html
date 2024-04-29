@@ -8,19 +8,15 @@
 	</head>
 	<body>
 		<header>
-			<h2>CineRent</h2>
-			<nav>
-				<ul>
-					<a href="index.html"><li>Home</li></a>
-					<a href="myRents.html"><li>My Rents</li></a>
-				</ul>
-			</nav>
+			<a href="index.html"><h2>CineRent</h2></a>
+			<a href="index.html"><button>Back to Main Menu</button></a>
 		</header>
 		<main>
 			<div class="form">
 				<h1>Register</h1>
 				<label for="first_name">First name</label>
 				<input
+					class="first_name"
 					type="text"
 					name="first_name"
 					placeholder="Enter your first name..."
@@ -28,6 +24,7 @@
 				/>
 				<label for="last_name">Last name</label>
 				<input
+					class="last_name"
 					type="text"
 					name="last_name"
 					placeholder="Enter your last name..."
@@ -36,6 +33,7 @@
 
 				<label for="phone_number">Phone number</label>
 				<input
+					class="phone_number"
 					type="tel"
 					name="phone_number"
 					placeholder="Enter your phone number..."
@@ -43,6 +41,7 @@
 				/>
 				<label for="address">Address</label>
 				<input
+					class="address"
 					type="text"
 					name="address"
 					placeholder="Enter your address..."
@@ -50,6 +49,7 @@
 				/>
 				<label for="email">Email</label>
 				<input
+					class="email"
 					type="text"
 					name="email"
 					placeholder="Enter your email..."
@@ -57,13 +57,18 @@
 				/>
 				<label for="password">Password</label>
 				<input
+					class="password"
 					type="password"
 					name="password"
 					placeholder="Enter your first name..."
 					required
 				/>
-				<button>Submit</button>
+				<button onclick="handleRegister()">Submit</button>
 			</div>
 		</main>
+		<footer>
+			<h2>Copyright - 2024</h2>
+		</footer>
 	</body>
+	<script src="auth.js"></script>
 </html>
