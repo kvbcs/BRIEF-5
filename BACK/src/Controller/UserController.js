@@ -91,32 +91,53 @@ const ctrlRegister = async (req, res) => {
 	}
 };
 
+//TODO : comparer le password avec users PASSWORD
 const ctrlLogin = async (req, res) => {
+	if (!req.body.email || !req.body.password) {
+		res.status(400).json({ Error: "Missing Fields" });
+		return;
+	}
 	const email = req.body.email;
 	const password = req.body.password;
-	const user_id = req.params.user_id;
 
 	try {
-		const [rows, fields] = await pool.query(
-			`SELECT * FROM users WHERE email = "${email}" AND password= "${password}"`
-		);
-
-		const token = jwt.sign(
-			{
-				email: rows.email,
-				userId: rows.user_id,
-			},
-			"secret_key",
-			{
-				expiresIn: "24h",
-			}
-		);
+		const values = [email];
+		const sql = `SELECT * FROM users WHERE email = ?`;
+		const [rows] = await pool.query(sql, values);
 
 		console.log(rows);
-		res.status(200).json({ jwt: token });
+
+		if (rows.length === 0) {
+			res.status(400).json({ Error: "Invalid email" });
+			return;
+		} else {
+			const isValidPassword = await bcrypt.compare(
+				req.body.password,
+				rows[0].password
+			);
+			console.log(isValidPassword);
+			if (!isValidPassword) {
+				res.status(400).json({ Error: "Invalid password" });
+				return;
+			} else {
+				const token = jwt.sign(
+					{
+						userId: rows[0].user_id,
+						email: rows[0].email,
+					},
+					process.env.MYSQL_SECRET_KEY,
+					{
+						expiresIn: "24h",
+					}
+				);
+				console.log(rows);
+				res.status(200).json({ jwt: token });
+				return;
+			}
+		}
 	} catch (error) {
 		console.log(error.stack);
-		res.status(400).json({ Error: "Invalid email or password" });
+		res.status(500).json({ Error: "Servor error" });
 	}
 };
 
