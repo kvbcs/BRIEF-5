@@ -40,4 +40,78 @@ const ctrlAllRents = async (req, res) => {
 		res.status(400).json({ Error: "Error getting all rents" });
 	}
 };
-module.exports = { ctrlCreateRent, ctrlAllRents };
+
+const ctrlOneRent = async (req, res) => {
+	const id = req.params.id;
+	try {
+		const sql = `SELECT * FROM equipement_rent WHERE equipement_rent_id=?`;
+		const values = [id];
+		const [rows] = await pool.execute(sql, values);
+		console.log(rows);
+		res.status(200).json(rows);
+	} catch (error) {
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error getting one rent" });
+	}
+};
+
+const ctrlUpdateRent = async (req, res) => {
+	const equipement_rent_id = req.params.equipement_rent_id;
+	const { rent_start, rent_end, price } = req.body;
+	let data = [];
+	const values = [];
+
+	try {
+		if (rent_start) {
+			data.push("rent_start=?");
+			values.push(rent_start);
+		}
+		if (rent_end) {
+			data.push("rent_end=?");
+			values.push(rent_end);
+		}
+		if (price) {
+			data.push("price=?");
+			values.push(price);
+		}
+
+		if (values.length > 0) {
+			values.push(equipement_rent_id);
+			data = data.join(",");
+			console.log(data, values);
+			const sql = `UPDATE equipement_rent SET ${data} WHERE equipement_rent_id = ?`;
+			const [rows] = await pool.execute(sql, values);
+			res.status(200).json(rows);
+		}
+	} catch (error) {
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error updating a rent" });
+	}
+};
+
+const ctrlDeleteRent = async (req, res) => {
+	const id = req.params.id;
+
+	try {
+		const [rows, fields] = await pool.query(
+			`DELETE FROM equipement_rent WHERE equipement_rent_id = "${id}"`
+		);
+		if (rows.affectedRows === 0) {
+			res.status(400).json({ Error: "This rent does not exist" });
+			return;
+		}
+		console.log(rows);
+		res.status(200).json({ Success: "Deleted rent successfull !" });
+	} catch (error) {
+		console.log(error.stack);
+		res.status(400).json({ Error: "Error deleting a rent" });
+	}
+};
+
+module.exports = {
+	ctrlCreateRent,
+	ctrlAllRents,
+	ctrlUpdateRent,
+	ctrlDeleteRent,
+	ctrlOneRent,
+};

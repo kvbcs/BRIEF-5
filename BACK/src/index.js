@@ -14,5 +14,6 @@ app.use("/user", userRouter);
 app.use("/listing", listingRouter);
 app.use("/rent", rentRouter);
 
-app.listen(4000);
-console.log("Server is running on PORT 4000");
+app.listen(process.env.PORT, () => {
+	console.log("Server is running on PORT", process.env.PORT);
+});

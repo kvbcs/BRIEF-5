@@ -94,13 +94,26 @@ const ctrlRegister = async (req, res) => {
 const ctrlLogin = async (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
+	const user_id = req.params.user_id;
 
 	try {
 		const [rows, fields] = await pool.query(
 			`SELECT * FROM users WHERE email = "${email}" AND password= "${password}"`
 		);
+
+		const token = jwt.sign(
+			{
+				email: rows.email,
+				userId: rows.user_id,
+			},
+			"secret_key",
+			{
+				expiresIn: "24h",
+			}
+		);
+
 		console.log(rows);
-		res.status(200).json({ Success: "Login successfull !" });
+		res.status(200).json({ jwt: token });
 	} catch (error) {
 		console.log(error.stack);
 		res.status(400).json({ Error: "Invalid email or password" });
