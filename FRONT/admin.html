@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cinema</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<a href="index.html"><h2>CineRent</h2></a>
+			<nav>
+				<ul>
+					<a href="index.html"><li>Home</li></a>
+					<a href="admin.html"><li>Admin</li></a>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="form">
+				<h1>Create a listing</h1>
+				<label for="name">Title</label>
+				<input
+					class="name"
+					type="text"
+					name="name"
+					placeholder="Enter your listing's name..."
+					required
+				/>
+				<label for="image">Image</label>
+				<input
+					class="image"
+					type="url"
+					name="image"
+					placeholder="Enter your image..."
+					required
+				/>
+
+				<label for="description">Description</label>
+				<input
+					class="description"
+					type="text"
+					name="description"
+					placeholder="Enter your description..."
+					required
+				/>
+				<label for="category">Category</label>
+				<input
+					class="category"
+					type="text"
+					name="category"
+					placeholder="Enter your category..."
+					required
+				/>
+				<label for="stock">Stock</label>
+				<input
+					class="stock"
+					type="text"
+					name="stock"
+					placeholder="Enter your stock..."
+					required
+				/>
+
+				<button onclick="createListing()">Submit</button>
+			</div>
+		</main>
+		<footer>
+			<h2>Copyright - 2024</h2>
+		</footer>
+	</body>
+	<script src="admin.js"></script>
+</html>

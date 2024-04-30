@@ -8,20 +8,20 @@ require("dotenv").config();
 const ctrlCreateListing = async (req, res) => {
 	if (
 		!req.body.name ||
-		!req.body.description ||
 		!req.body.image ||
+		!req.body.description ||
 		!req.body.category ||
 		!req.body.stock
 	) {
 		res.status(400).json({ error: "Some fields are missing" });
 	}
 	const name = req.body.name;
-	const description = req.body.description;
 	const image = req.body.image;
+	const description = req.body.description;
 	const category = req.body.category;
 	const stock = req.body.stock;
 	try {
-		const values = [name, description, image, category, stock];
+		const values = [name, image, description, category, stock];
 		const sql = `INSERT INTO equipement VALUES (NULL, ?, ?, ?, ?, ?)`;
 		const [rows, fileds] = await pool.execute(sql, values);
 		console.log(rows);
@@ -34,9 +34,7 @@ const ctrlCreateListing = async (req, res) => {
 
 const ctrlAllListings = async (req, res) => {
 	try {
-		const [rows, fields] = await pool.query(
-			"SELECT name, image, description, category, stock FROM equipement"
-		);
+		const [rows, fields] = await pool.query("SELECT * FROM equipement");
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
@@ -61,7 +59,7 @@ const ctrlOneListing = async (req, res) => {
 
 const ctrlDeleteListing = async (req, res) => {
 	const id = req.params.id;
-
+	console.log(id);
 	try {
 		const values = [id];
 		const sql = `DELETE FROM equipement WHERE equipement_id = ?`;

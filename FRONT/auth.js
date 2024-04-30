@@ -1,4 +1,4 @@
-console.log("test");
+console.log("allooo");
 
 async function handleRegister() {
 	let first_name = document.querySelector(".first_name").value;
@@ -16,7 +16,6 @@ async function handleRegister() {
 		email: email,
 		password: password,
 	};
-
 	let request = {
 		method: "POST",
 		headers: {
@@ -29,12 +28,11 @@ async function handleRegister() {
 	let response = await apiRequest;
 	console.log(response);
 	if (response.status === 200) {
-		console.log(user);
+		window.location.href = "./login.html";
 	} else {
 		alert("Invalid credentials");
 	}
 }
-//TODO: fix register, login marche tkt
 
 async function handleLogin() {
 	let email = document.querySelector(".email").value;
@@ -59,7 +57,7 @@ async function handleLogin() {
 	console.log(response);
 	if (response.status === 200) {
 		let jwt = data.jwt;
-		window.localStorage.setItem("jwt", jwt);
+		window.sessionStorage.setItem("jwt", jwt);
 		window.location.href = "./index.html";
 	} else {
 		alert("Invalid credentials");
