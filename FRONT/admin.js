@@ -54,7 +54,7 @@ async function getAllListings() {
 						</div>
 							<h2>Category : ${listing.category}</h2>  
 						<div class="admin-buttons">
-							<h3> Stock: ${listing.stock}</h3> 
+							<h2> Stock: ${listing.stock}</h2> 
 							<button class="updateBtn" onclick="updateListing(${listing.equipement_id})">Update</button> 
 							<button class="deleteBtn" onclick="deleteListing(${listing.equipement_id})">Delete</button> 
 						</div>

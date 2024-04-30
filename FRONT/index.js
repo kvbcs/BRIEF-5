@@ -15,7 +15,7 @@ async function getAllListings() {
 	console.log(response);
 
 	response.forEach((listing) => {
-		main.innerHTML += `<div class="listing"> <img src="${listing.image}"/> <div class="listing-info"> <h2>${listing.name}</h2>  <div class="listing-p"><p>${listing.description}</p></div> <h2>Category : ${listing.category}</h2>  <div class="stock-rent"> <h3> Stock: ${listing.stock}</h3>  <button class="rentBtn" onclick="handleRent()">Rent</button> </div> </div> </div>`;
+		main.innerHTML += `<div class="listing"> <img src="${listing.image}"/> <div class="listing-info"> <h2>${listing.name}</h2>  <div class="listing-p"><p>${listing.description}</p></div> <h2>Category : ${listing.category}</h2>  <div class="stock-rent"> <h2 class="stock">${listing.stock}</h2>  <button class="rentBtn" onclick="handleRent()">Rent</button> </div> </div> </div>`;
 	});
 }
 
@@ -40,10 +40,10 @@ function handleRent() {
 	let overlay = document.querySelector(".overlay");
 	overlay.classList.remove("visibility");
 	modal.classList.remove("visibility");
-	overlay.addEventListener("click", function () {
-		overlay.classList.add("visibility");
-		modal.classList.add("visibility");
-	});
+	// overlay.addEventListener("click", function () {
+	// 	overlay.classList.add("visibility");
+	// 	modal.classList.add("visibility");
+	// });
 }
 
 function removeModal() {
@@ -51,4 +51,45 @@ function removeModal() {
 	let overlay = document.querySelector(".overlay");
 	overlay.classList.add("visibility");
 	modal.classList.add("visibility");
+}
+
+async function rentSubmit(id) {
+	let modal = document.querySelector(".modal");
+	let rent_start = document.querySelector(".rent_start").value;
+	let rent_end = document.querySelector(".rent_end").value;
+	let price = document.querySelector(".price").value;
+
+	let rent = {
+		rent_start: rent_start,
+		rent_end: rent_end,
+		price: price,
+	};
+
+	let request = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json; charset=utf-8",
+		},
+		body: JSON.stringify(rent),
+	};
+
+	let apiRequest = fetch(
+		`http://localhost:4000/rent/create/${id}/${id}`,
+		request
+	);
+	let response = await apiRequest;
+	if (response.status === 200) {
+		console.log(response);
+		// window.location.reload();
+		let stock = document.querySelector(".stock");
+		let stockValue = document.querySelector(".stock").value;
+		for (let i = stockValue; i > 0; i--) {
+			stock += stockValue[i];
+			alert(i);
+			console.log(i);
+		}
+	} else {
+		alert("nope");
+	}
+	//TODO: fix le stock decrementation
 }
