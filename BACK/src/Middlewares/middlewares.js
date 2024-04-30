@@ -34,6 +34,7 @@ const verifyUser = async (req, res, next) => {
 	req.last_name = last_name;
 	req.address = address;
 	req.email = email;
+	req.phone_number = phone_number;
 
 	next();
 };

@@ -27,7 +27,42 @@
 		</header>
 		<section><h1>Start renting today !</h1></section>
 
-		<main></main>
+		<main>
+			<div class="overlay visibility">
+				<div class="form visibility modal">
+					<h2>Rent</h2>
+					<label for="rent_start">Rent start</label>
+					<input
+						class="rent_start"
+						type="date"
+						name="rent_start"
+						placeholder="Choose your start date..."
+						required
+					/>
+					<label for="rent_end">Rent end</label>
+					<input
+						class="rent_end"
+						type="date"
+						name="rent_end"
+						placeholder="Choose your rate end..."
+						required
+					/>
+
+					<label for="price">Price</label>
+					<input
+						class="price"
+						type="number"
+						name="price"
+						placeholder="price..."
+						required
+					/>
+					<div class="admin_buttons">
+						<button onclick="">Submit</button>
+						<button onclick="removeModal()">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</main>
 		<footer>
 			<h2>Copyright - 2024</h2>
 		</footer>

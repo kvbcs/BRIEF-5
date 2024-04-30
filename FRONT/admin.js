@@ -1,6 +1,7 @@
 console.log("ca marche");
 let main = document.querySelector("main");
 let listing = document.querySelector(".listing");
+let section = document.querySelector("section");
 
 async function createListing() {
 	let name = document.querySelector(".name").value;
@@ -30,7 +31,7 @@ async function createListing() {
 	console.log(response);
 	if (response.status === 200) {
 		console.log(response);
-		window.location.href = "./index.html";
+		window.location.reload();
 	}
 }
 
@@ -40,7 +41,25 @@ async function getAllListings() {
 	console.log(response);
 
 	response.forEach((listing) => {
-		main.innerHTML += `<div class="listing"> <p>ID : ${listing.equipement_id}</p> <h2>${listing.name}</h2> <img src="${listing.image}"/> <div class="listing-p"><p>${listing.description}</p></div> <h2>Category : ${listing.category}</h2>  <h3> Stock: ${listing.stock}</h3> <button class="updateBtn" onclick="updateListing(${listing.equipement_id})">Update</button> <button class="deleteBtn" onclick="deleteListing(${listing.equipement_id})">Delete</button> </div>`;
+		section.innerHTML += `
+		<div class="listing">  
+			<img src="${listing.image}"/> 
+			<div class="listing-info">
+			<div class="admin-buttons">
+				<p>ID : ${listing.equipement_id}</p> 
+					<h2>${listing.name}</h2> 
+			</div>
+						<div class="listing-p">
+							<p>${listing.description}</p> 
+						</div>
+							<h2>Category : ${listing.category}</h2>  
+						<div class="admin-buttons">
+							<h3> Stock: ${listing.stock}</h3> 
+							<button class="updateBtn" onclick="updateListing(${listing.equipement_id})">Update</button> 
+							<button class="deleteBtn" onclick="deleteListing(${listing.equipement_id})">Delete</button> 
+						</div>
+			</div>
+		</div>`;
 	});
 }
 
