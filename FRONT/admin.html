@@ -9,12 +9,9 @@
 	<body>
 		<header>
 			<a href="index.html"><h2>CineRent</h2></a>
-			<nav>
-				<ul>
-					<a href="index.html"><li>Home</li></a>
-					<a href="admin.html"><li>Admin</li></a>
-				</ul>
-			</nav>
+
+			<a href="index.html"><button>Main Menu</button></a>
+
 			<button class="disconnect" onclick="disconnectButton()">
 				Disconnect
 			</button>
@@ -28,7 +25,6 @@
 					type="text"
 					name="name"
 					placeholder="Enter your listing's name..."
-					required
 				/>
 				<label for="image">Image</label>
 				<input
@@ -36,7 +32,6 @@
 					type="url"
 					name="image"
 					placeholder="Enter your image..."
-					required
 				/>
 
 				<label for="description">Description</label>
@@ -45,7 +40,6 @@
 					type="text"
 					name="description"
 					placeholder="Enter your description..."
-					required
 				/>
 				<label for="category">Category</label>
 				<input
@@ -53,7 +47,6 @@
 					type="text"
 					name="category"
 					placeholder="Enter your category..."
-					required
 				/>
 				<label for="stock">Stock</label>
 				<input
@@ -61,10 +54,58 @@
 					type="text"
 					name="stock"
 					placeholder="Enter your stock..."
-					required
 				/>
 
 				<button onclick="createListing()">Submit</button>
+			</div>
+			<div class="overlay visibility">
+				<div class="form visibility adminModal">
+					<h2>Update your listing</h2>
+					<label for="name">Title</label>
+					<input
+						id="name"
+						type="text"
+						name="name"
+						placeholder="Enter your listing's shit name..."
+					/>
+					<label for="image">Image</label>
+					<input
+						id="image"
+						type="url"
+						name="image"
+						placeholder="Enter your image..."
+					/>
+
+					<label for="description">Description</label>
+					<input
+						id="description"
+						type="text"
+						name="description"
+						placeholder="Enter your description..."
+					/>
+					<label for="category">Category</label>
+					<input
+						id="category"
+						type="text"
+						name="category"
+						placeholder="Enter your category..."
+					/>
+					<label for="stock">Stock</label>
+					<input
+						id="stock"
+						type="text"
+						name="stock"
+						placeholder="Enter your stock..."
+					/>
+					<div class="admin_buttons">
+						<button class="modalBtn" onclick="updateSubmit()">
+							Submit
+						</button>
+						<button class="modalBtn" onclick="removeModal()">
+							Cancel
+						</button>
+					</div>
+				</div>
 			</div>
 		</main>
 		<div class="admin-h2"><h2>Edit or delete listings</h2></div>

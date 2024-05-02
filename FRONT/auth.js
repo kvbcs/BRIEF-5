@@ -57,8 +57,14 @@ async function handleLogin() {
 	console.log(response);
 	if (response.status === 200) {
 		let jwt = data.jwt;
+		let role = data.role;
 		window.sessionStorage.setItem("jwt", jwt);
-		window.location.href = "./index.html";
+		window.sessionStorage.setItem("role", role);
+		if (role === "admin") {
+			window.location.href = "./admin.html";
+		} else {
+			window.location.href = "./index.html";
+		}
 	} else {
 		alert("Invalid credentials");
 	}

@@ -121,16 +121,16 @@ const ctrlLogin = async (req, res) => {
 			} else {
 				const token = jwt.sign(
 					{
-						userId: rows[0].user_id,
+						user_id: rows[0].user_id,
 						email: rows[0].email,
 					},
 					process.env.MYSQL_SECRET_KEY,
 					{
-						expiresIn: "24h",
+						expiresIn: "1d",
 					}
 				);
 				console.log(rows);
-				res.status(200).json({ jwt: token });
+				res.status(200).json({ jwt: token, role: rows[0].role });
 				return;
 			}
 		}

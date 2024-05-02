@@ -2,6 +2,15 @@ console.log("ca marche");
 let main = document.querySelector("main");
 let listing = document.querySelector(".listing");
 let section = document.querySelector("section");
+let jwt = window.sessionStorage.getItem("jwt");
+let role = window.sessionStorage.getItem("role");
+
+function disconnectButton() {
+	window.sessionStorage.clear(jwt, role);
+	setTimeout(() => {
+		window.location.href = "./index.html";
+	}, 1000);
+}
 
 async function createListing() {
 	let name = document.querySelector(".name").value;
@@ -40,26 +49,33 @@ async function getAllListings() {
 	let response = await apiCall.json();
 	console.log(response);
 
-	response.forEach((listing) => {
+	response.forEach((element) => {
 		section.innerHTML += `
 		<div class="listing">  
-			<img src="${listing.image}"/> 
+			<img src="${element.image}"/> 
 			<div class="listing-info">
 			<div class="admin-buttons">
-				<p>ID : ${listing.equipement_id}</p> 
-					<h2>${listing.name}</h2> 
+				<p>ID : ${element.equipement_id}</p> 
+					<h2>${element.name}</h2> 
 			</div>
 						<div class="listing-p">
-							<p>${listing.description}</p> 
+							<p>${element.description}</p> 
 						</div>
-							<h2>Category : ${listing.category}</h2>  
+							<h2>Category : ${element.category}</h2>  
 						<div class="admin-buttons">
-							<h2> Stock: ${listing.stock}</h2> 
-							<button class="updateBtn" onclick="updateListing(${listing.equipement_id})">Update</button> 
-							<button class="deleteBtn" onclick="deleteListing(${listing.equipement_id})">Delete</button> 
+							<h2> Stock: ${element.stock}</h2> 
+							<button class="updateBtn" onclick="updateListing(${element.equipement_id})">Update</button> 
+							<button class="deleteBtn" onclick="deleteListing(${element.equipement_id})">Delete</button> 
 						</div>
 			</div>
 		</div>`;
+
+		// let btn2 = document.querySelector(
+		// 	`.updateBtn-${element.equipement_id}`
+		// );
+		// btn2.addEventListener("click", function () {
+		// 	updateListing(element.equipement_id, listing);
+		// });
 	});
 }
 
@@ -89,26 +105,67 @@ async function deleteListing(id) {
 	}
 }
 
-async function updateListing(id) {
-	let form = document.querySelector(".form");
-	console.log(id);
+async function updateListing(listing) {
+	let name = document.querySelector(".name");
+	let image = document.querySelector(".image");
+	let description = document.querySelector(".description");
+	let category = document.querySelector(".category");
+	let stock = document.querySelector(".stock");
+
+	name.value = listing.name;
+	image.value = listing.image;
+	description.value = listing.description;
+	category.value = listing.category;
+	stock.value = listing.stock;
+
+	let adminModal = document.querySelector(".adminModal");
+	let overlay = document.querySelector(".overlay");
+	overlay.classList.remove("visibility");
+	adminModal.classList.remove("visibility");
+}
+
+function removeModal() {
+	let adminModal = document.querySelector(".adminModal");
+	let overlay = document.querySelector(".overlay");
+	overlay.classList.add("visibility");
+	adminModal.classList.add("visibility");
+}
+
+async function updateSubmit(equipement_id) {
+	console.log(equipement_id);
+	let name = document.querySelector("#name");
+	let image = document.querySelector("#image");
+	let description = document.querySelector("#description");
+	let category = document.querySelector("#category");
+	let stock = document.querySelector("#stock");
+
+	let updatedListing = {
+		name: name.value,
+		image: image,
+		description: description,
+		category: category,
+		stock: stock,
+	};
+
 	let request = {
 		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json; charset=utf-8",
 		},
+		body: JSON.stringify(updatedListing),
 	};
-
+	let id = equipement_id.id;
 	let apiRequest = fetch(
 		`http://localhost:4000/listing/update/${id}`,
 		request
 	);
 	let response = await apiRequest;
-	console.log(response);
+	let result = await response.json();
+	console.log(result);
 	if (response.status === 200) {
 		console.log(response);
 		alert("Update success");
-		window.location.reload();
+		// window.location.reload();
 	} else {
 		alert("Update failed");
 	}

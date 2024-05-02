@@ -10,10 +10,9 @@
 		<header>
 			<a href="index.html"><h2>CineRent</h2></a>
 			<nav>
-				<ul>
-					<a href="index.html"><li>Home</li></a>
-					<a href="admin.html"><li>Admin</li></a>
-				</ul>
+				<a href="admin.html"
+					><button class="adminBtn visibility">Admin</button></a
+				>
 			</nav>
 			<div>
 				<button class="hidden disconnect" onclick="disconnectButton()">
@@ -57,8 +56,12 @@
 						required
 					/>
 					<div class="admin_buttons">
-						<button onclick="rentSubmit()">Submit</button>
-						<button onclick="removeModal()">Cancel</button>
+						<button class="modalBtn" onclick="rentSubmit()">
+							Submit
+						</button>
+						<button class="modalBtn" onclick="removeModal()">
+							Cancel
+						</button>
 					</div>
 				</div>
 			</div>

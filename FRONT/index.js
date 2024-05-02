@@ -7,15 +7,20 @@ let login = document.querySelector(".login");
 let register = document.querySelector(".register");
 let hidden = document.querySelector(".hidden");
 let jwt = window.sessionStorage.getItem("jwt");
+let role = window.sessionStorage.getItem("role");
 let body = document.querySelector("body");
+let adminBtn = document.querySelector(".adminBtn");
 
+if (role === "admin") {
+adminBtn.classList.remove("visibility")
+}
 async function getAllListings() {
 	let apiCall = await fetch("http://localhost:4000/listing/all");
 	let response = await apiCall.json();
 	console.log(response);
 
 	response.forEach((listing) => {
-		main.innerHTML += `<div class="listing"> <img src="${listing.image}"/> <div class="listing-info"> <h2>${listing.name}</h2>  <div class="listing-p"><p>${listing.description}</p></div> <h2>Category : ${listing.category}</h2>  <div class="stock-rent"> <h2 class="stock">${listing.stock}</h2>  <button class="rentBtn" onclick="handleRent()">Rent</button> </div> </div> </div>`;
+		main.innerHTML += `<div class="listing"> <img src="${listing.image}"/> <div class="listing-info"> <h2>${listing.name}</h2>  <div class="listing-p"><p>${listing.description}</p></div> <h2>Category : ${listing.category}</h2>  <div class="stock-rent"> <h2 class="stock">Stock : ${listing.stock}</h2>  <button class="rentBtn" onclick="handleRent()">Rent</button> </div> </div> </div>`;
 	});
 }
 
@@ -91,5 +96,5 @@ async function rentSubmit(id) {
 	} else {
 		alert("nope");
 	}
-	//TODO: fix le stock decrementation
+	//TODO: fix le stock decrementation avec un update
 }
