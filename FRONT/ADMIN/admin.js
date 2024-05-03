@@ -1,7 +1,7 @@
 let listing = document.querySelector(".listing");
 let jwt = window.sessionStorage.getItem("jwt");
 let role = window.sessionStorage.getItem("role");
-
+let listingIdToDelete;
 function disconnectButton() {
 	window.sessionStorage.clear(jwt, role);
 	setTimeout(() => {
@@ -33,18 +33,25 @@ async function deleteListing(id) {
 	}
 }
 
-async function updateListing(listing, id) {
+async function updateListing(listing) {
+	console.log(listing);
 	let name = document.querySelector(".name");
 	let image = document.querySelector(".image");
 	let description = document.querySelector(".description");
 	let category = document.querySelector(".category");
 	let stock = document.querySelector(".stock");
 
-	name.value = listing.name;
-	image.value = listing.image;
-	description.value = listing.description;
-	category.value = listing.category;
-	stock.value = listing.stock;
+	let listingData = await fetch(`http://localhost:4000/listing/${listing}`);
+
+	let response = await listingData.json();
+	console.log(response);
+
+	name.value = response[0].name;
+	image.value = response[0].image;
+	description.value = response[0].description;
+	category.value = response[0].category;
+	stock.value = response[0].stock;
+	listingIdToDelete = response[0].equipement_id;
 
 	let adminModal = document.querySelector(".adminModal");
 	let overlay = document.querySelector(".overlay");
@@ -52,14 +59,14 @@ async function updateListing(listing, id) {
 	adminModal.classList.remove("visibility");
 }
 
-async function updateSubmit(id) {
-	console.log(id);
+async function updateSubmit() {
+	console.log(listingIdToDelete);
 
-	let name = document.querySelector(".name");
-	let image = document.querySelector(".image");
-	let description = document.querySelector(".description");
-	let category = document.querySelector(".category");
-	let stock = document.querySelector(".stock");
+	let name = document.querySelector(".name").value;
+	let image = document.querySelector(".image").value;
+	let description = document.querySelector(".description").value;
+	let category = document.querySelector(".category").value;
+	let stock = document.querySelector(".stock").value;
 
 	let updatedListing = {
 		name: name,
@@ -78,7 +85,7 @@ async function updateSubmit(id) {
 	};
 
 	let apiRequest = fetch(
-		`http://localhost:4000/listing/update/${id}`,
+		`http://localhost:4000/listing/update/${listingIdToDelete}`,
 		request
 	);
 	let response = await apiRequest;

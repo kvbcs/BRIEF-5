@@ -106,7 +106,7 @@ const ctrlUpdateListing = async (req, res) => {
 		if (values.length > 0) {
 			values.push(id);
 			data = data.join(",");
-			console.log(data, values);
+			console.log(data, values, req.body);
 			const sql = `UPDATE equipement SET ${data} WHERE equipement_id = ?`;
 			const [rows] = await pool.execute(sql, values);
 			res.status(200).json(rows);
