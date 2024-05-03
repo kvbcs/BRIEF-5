@@ -1,0 +1,49 @@
+.listing {
+	border: 2px solid white;
+	border-radius: 25px;
+	box-shadow: 0px 0px 10px white;
+	height: 300px;
+	width: 700px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+	background: linear-gradient(0deg, black, rgb(49, 49, 49));
+}
+.listing-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 20px;
+	height: 90%;
+	width: 60%;
+}
+.listing-p {
+	width: 90%;
+	height: 150px;
+	overflow-y: auto;
+	text-align: justify;
+	background-color: white;
+	color: black;
+	padding: 10px;
+}
+.listing-p p {
+	color: black;
+}
+.listing img {
+	height: 200px;
+	width: 200px;
+	box-shadow: 0px 0px 10px white;
+	border: 2px solid white;
+}
+
+.stock-rent {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	justify-content: space-around;
+}
+

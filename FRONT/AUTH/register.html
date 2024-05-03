@@ -3,14 +3,18 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cinema</title>
-		<link rel="stylesheet" href="style.css" />
+		<title>Film Rent</title>
+		<link rel="stylesheet" href="../CSS/style.css" />
+		<link rel="stylesheet" href="../CSS/form.css" />
 	</head>
 	<body>
 		<header>
-			<a href="index.html"><h2>CineRent</h2></a>
-			<a href="index.html"><button>Back to Main Menu</button></a>
+			<a href="../INDEX/index.html"
+				><img src="../MEDIAS/logo.png" alt="Film Rent logo"
+			/></a>
+			<a href="../INDEX/index.html"><button>Main Menu</button></a>
 		</header>
+
 		<main>
 			<div class="form">
 				<h1>Register</h1>
@@ -60,15 +64,17 @@
 					class="password"
 					type="password"
 					name="password"
-					placeholder="Enter your first name..."
+					placeholder="Enter your password..."
 					required
 				/>
 				<button onclick="handleRegister()">Submit</button>
 			</div>
 		</main>
+
 		<footer>
 			<h2>Copyright - 2024</h2>
 		</footer>
 	</body>
-	<script src="auth.js"></script>
+
+	<script src="./auth.js"></script>
 </html>

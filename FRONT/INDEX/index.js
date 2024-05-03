@@ -10,9 +10,10 @@ let jwt = window.sessionStorage.getItem("jwt");
 let role = window.sessionStorage.getItem("role");
 let body = document.querySelector("body");
 let adminBtn = document.querySelector(".adminBtn");
+let rentBtn = document.querySelector(".rentBtn");
 
 if (role === "admin") {
-adminBtn.classList.remove("visibility")
+	adminBtn.classList.remove("visibility");
 }
 async function getAllListings() {
 	let apiCall = await fetch("http://localhost:4000/listing/all");
@@ -40,11 +41,12 @@ function disconnectButton() {
 	}, 1000);
 }
 
-function handleRent() {
+function handleRent(role) {
 	let modal = document.querySelector(".modal");
 	let overlay = document.querySelector(".overlay");
 	overlay.classList.remove("visibility");
 	modal.classList.remove("visibility");
+
 	// overlay.addEventListener("click", function () {
 	// 	overlay.classList.add("visibility");
 	// 	modal.classList.add("visibility");

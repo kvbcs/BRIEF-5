@@ -7,6 +7,11 @@
 body {
 	background-color: black;
 	height: fit-content;
+	background-image: url("https://static.vecteezy.com/system/resources/previews/011/598/289/original/blank-smartphone-with-popcorn-film-strip-clapperboard-on-blue-background-online-streaming-movie-concept-iluustration-free-vector.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
 }
 
 button {
@@ -77,6 +82,10 @@ header li:hover {
 header button {
 	box-shadow: 0px 0px 0px;
 }
+header img {
+	height: fit-content;
+	width: 300px;
+}
 .disconnect {
 	background-color: red;
 	color: white;
@@ -86,142 +95,89 @@ header button {
 	display: none;
 }
 section {
-	height: fit-content;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	flex-wrap: wrap;
 	gap: 70px;
 	padding: 10vh 20px;
-}
-.admin-buttons {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 20px;
-}
-.admin-h2 {
-	height: 10vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 2em;
-}
-.adminModal {
-	z-index: 2;
-	position: fixed;
-	top: 3%;
-	left: 35%;
-	background: linear-gradient(0deg, black, rgb(49, 49, 49));
+	background-color: black;
+	padding: 20px;
+	height: 90vh;
+	background-image: url("https://wallpapers.com/images/hd/cinema-theater-screen-red-interior-mdii641t9soyox58.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-position: fixed;
+	box-shadow: 0px 10px 20px black;
 }
 
-.listing {
-	border: 2px solid white;
-	border-radius: 25px;
-	box-shadow: 0px 0px 10px white;
-	height: 300px;
-	width: 700px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-evenly;
-	text-align: center;
-	background: linear-gradient(0deg, black, rgb(49, 49, 49));
-}
-.listing-info {
+section div {
+	width: 60%;
+	height: 70%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	align-items: center;
-	gap: 20px;
-	height: 90%;
-	width: 60%;
-}
-.listing-p {
-	width: 90%;
-	height: 150px;
-	overflow-y: auto;
 	text-align: justify;
-	background-color: white;
-	color: black;
-	padding: 10px;
+	background: linear-gradient(0deg, black, rgb(34, 34, 34));
+	padding: 10px 30px;
+	border-radius: 10%;
+	z-index: 2;
+	position: relative;
+	top: 50px;
+	left: 75px;
+	border-radius: 2px solid black;
+	box-shadow: -20px 20px 20px black;
 }
-.listing-p p {
-	color: black;
+section p {
+	font-size: 20px;
 }
-.listing img {
-	height: 200px;
-	width: 200px;
-	box-shadow: 0px 0px 10px white;
-	border: 2px solid white;
+section h1 {
+	font-size: 3em;
+	color: gold;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.stock-rent {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	width: 100%;
-	justify-content: space-around;
+section img {
+	width: 40%;
+	height: 60%;
+	border-radius: 10%;
+	z-index: 1;
+	position: relative;
+	bottom: 100px;
+	right: 100px;
+	border-radius: 2px solid black;
+	box-shadow: 20px -20px 20px black;
 }
+
 main {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	height: fit-content;
+	min-height: 80vh;
+	max-height: fit-content;
 	gap: 50px;
 	padding: 50px 20px;
 }
-.overlay {
-	z-index: 1;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.87);
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-.modal {
-	z-index: 2;
-	position: fixed;
-	top: 15%;
-	left: 35%;
-	background: linear-gradient(0deg, black, rgb(49, 49, 49));
-}
-.modalBtn {
-	transition: 0s;
-}
-.visibility {
-	visibility: hidden;
-}
-.auth-main {
-	height: 80vh;
-}
-.form {
+#index-h2 {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
-	border: 2px solid white;
-	box-shadow: 0px 0px 10px white;
-	border-radius: 25px;
-	width: 600px;
-	height: fit-content;
-	padding: 50px 0px;
-	gap: 20px;
-	background: linear-gradient(180deg, black, rgb(49, 49, 49));
+	justify-content: center;
+	margin-top: 100px;
 }
-label {
-	color: white;
-}
-input {
+.index-h2 {
+	font-size: 3em;
+	background: linear-gradient(0deg, black, rgb(34, 34, 34));
 	padding: 10px;
-	border-radius: 25px;
+	border-radius: 10px;
 	width: 70%;
+	height: 100px;
+	text-align: center;
+	align-self: center;
+	box-shadow: 0px 10px 20px black;
+	color: gold;
 }
+
 img {
 	border-radius: 50%;
 }
@@ -237,7 +193,6 @@ footer {
 	align-items: center;
 	padding: 0px 10px;
 	color: black;
-	margin-top: 50px;
 }
 footer h2 {
 	color: black;

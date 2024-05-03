@@ -1,0 +1,45 @@
+.auth-main {
+	height: 80vh;
+}
+
+.admin-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 20px;
+}
+
+#admin-h2 {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+}
+.admin-h2 {
+	font-size: 3em;
+	background: linear-gradient(0deg, black, rgb(34, 34, 34));
+	padding: 10px;
+	border-radius: 10px;
+	width: 70%;
+	height: 90px;
+	text-align: center;
+	align-self: center;
+	box-shadow: 0px 10px 20px black;
+	color: gold;
+}
+.adminModal {
+	z-index: 2;
+	position: fixed;
+	top: 3%;
+	left: 35%;
+	background: linear-gradient(0deg, black, rgb(49, 49, 49));
+}
+aside {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 50px;
+	padding: 50px 20px;
+	margin-top: 100px;
+}

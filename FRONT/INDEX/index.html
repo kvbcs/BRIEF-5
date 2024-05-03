@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Film Rent</title>
+		<link rel="stylesheet" href="../CSS/style.css" />
+		<link rel="stylesheet" href="../CSS/listing.css" />
+		<link rel="stylesheet" href="../CSS/form.css" />
+	</head>
+	<body>
+		<header>
+			<a href="./index.html"
+				><img src="../MEDIAS/logo.png" alt="Film Rent logo"
+			/></a>
+			<a href="../ADMIN/admin.html"
+				><button class="adminBtn hidden">Admin</button></a
+			>
+			<div>
+				<button class="hidden disconnect" onclick="disconnectButton()">
+					Disconnect
+				</button>
+				<a href="../AUTH/login.html"
+					><button class="login">Log in</button></a
+				>
+				<a href="../AUTH/register.html"
+					><button class="register">Register</button></a
+				>
+			</div>
+		</header>
+
+		<section>
+			<div>
+				<h1>Welcome to <b>Film Rent !</b></h1>
+				<p>
+					<b>Film Rent</b> is a renting company that makes filming
+					equipment available to all ! On our website you will find
+					all kinds of equipment such as :
+					<b>cameras, lenses, microphones, lightings and more !</b>
+					<br /><br />
+					In partnership with our client LocMatérielPro, we here at
+					<b>Film Rent</b> offer the highest quality filming equipment
+					available on the market, at a cheap and affordable price !
+					<br /><br />
+					Register yourself to start renting today !
+				</p>
+				<a href="../AUTH/register.html"
+					><button class="register">Register</button></a
+				>
+			</div>
+			<img
+				src="https://c4.wallpaperflare.com/wallpaper/22/762/507/film-movie-filmmaker-movie-director-wallpaper-preview.jpg"
+				alt="Picture of filming equipment on Film Rent"
+			/>
+		</section>
+		<div id="index-h2"><h2 class="index-h2">Available equipment</h2></div>
+		<main>
+			<div class="overlay visibility">
+				<div class="form visibility modal">
+					<h2>Rent</h2>
+					<label for="rent_start">Rent start</label>
+					<input
+						class="rent_start"
+						type="date"
+						name="rent_start"
+						placeholder="Choose your start date..."
+						required
+					/>
+					<label for="rent_end">Rent end</label>
+					<input
+						class="rent_end"
+						type="date"
+						name="rent_end"
+						placeholder="Choose your end date..."
+						required
+					/>
+
+					<label for="price">Price</label>
+					<input
+						class="price"
+						type="number"
+						name="price"
+						placeholder="price..."
+						required
+					/>
+					<div class="admin_buttons">
+						<button class="modalBtn" onclick="rentSubmit()">
+							Submit
+						</button>
+						<button class="modalBtn" onclick="removeModal()">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<h2>Copyright - 2024</h2>
+		</footer>
+	</body>
+
+	<script src="./index.js"></script>
+</html>

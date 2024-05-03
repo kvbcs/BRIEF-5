@@ -1,5 +1,3 @@
-console.log("allooo");
-
 async function handleRegister() {
 	let first_name = document.querySelector(".first_name").value;
 	let last_name = document.querySelector(".last_name").value;
@@ -26,6 +24,7 @@ async function handleRegister() {
 
 	let apiRequest = fetch("http://localhost:4000/user/register", request);
 	let response = await apiRequest;
+
 	console.log(response);
 	if (response.status === 200) {
 		window.location.href = "./login.html";
@@ -61,9 +60,9 @@ async function handleLogin() {
 		window.sessionStorage.setItem("jwt", jwt);
 		window.sessionStorage.setItem("role", role);
 		if (role === "admin") {
-			window.location.href = "./admin.html";
+			window.location.href = "../ADMIN/admin.html";
 		} else {
-			window.location.href = "./index.html";
+			window.location.href = "../INDEX/index.html";
 		}
 	} else {
 		alert("Invalid credentials");

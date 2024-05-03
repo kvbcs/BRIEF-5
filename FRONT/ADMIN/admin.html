@@ -3,54 +3,60 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cinema</title>
-		<link rel="stylesheet" href="style.css" />
+		<title>Film Rent</title>
+		<link rel="stylesheet" href="../CSS/style.css" />
+		<link rel="stylesheet" href="../CSS/listing.css" />
+		<link rel="stylesheet" href="../CSS/admin.css" />
+		<link rel="stylesheet" href="../CSS/form.css" />
 	</head>
+
 	<body>
 		<header>
-			<a href="index.html"><h2>CineRent</h2></a>
-
-			<a href="index.html"><button>Main Menu</button></a>
+			<a href="../INDEX/index.html"
+				><img src="../MEDIAS/logo.png" alt="Film Rent logo"
+			/></a>
+			<a href="../INDEX/index.html"><button>Main Menu</button></a>
 
 			<button class="disconnect" onclick="disconnectButton()">
 				Disconnect
 			</button>
 		</header>
+
 		<main>
 			<div class="form">
 				<h1>Create a listing</h1>
 				<label for="name">Title</label>
 				<input
-					class="name"
+					id="name"
 					type="text"
 					name="name"
-					placeholder="Enter your listing's name..."
+					placeholder="Enter your title..."
 				/>
 				<label for="image">Image</label>
 				<input
-					class="image"
+					id="image"
 					type="url"
 					name="image"
-					placeholder="Enter your image..."
+					placeholder="Enter your image url..."
 				/>
 
 				<label for="description">Description</label>
 				<input
-					class="description"
+					id="description"
 					type="text"
 					name="description"
 					placeholder="Enter your description..."
 				/>
 				<label for="category">Category</label>
 				<input
-					class="category"
+					id="category"
 					type="text"
 					name="category"
 					placeholder="Enter your category..."
 				/>
 				<label for="stock">Stock</label>
 				<input
-					class="stock"
+					id="stock"
 					type="text"
 					name="stock"
 					placeholder="Enter your stock..."
@@ -63,36 +69,36 @@
 					<h2>Update your listing</h2>
 					<label for="name">Title</label>
 					<input
-						id="name"
+						class="name"
 						type="text"
 						name="name"
-						placeholder="Enter your listing's shit name..."
+						placeholder="Enter your title..."
 					/>
 					<label for="image">Image</label>
 					<input
-						id="image"
+						class="image"
 						type="url"
 						name="image"
-						placeholder="Enter your image..."
+						placeholder="Enter your image url..."
 					/>
 
 					<label for="description">Description</label>
 					<input
-						id="description"
+						class="description"
 						type="text"
 						name="description"
 						placeholder="Enter your description..."
 					/>
 					<label for="category">Category</label>
 					<input
-						id="category"
+						class="category"
 						type="text"
 						name="category"
 						placeholder="Enter your category..."
 					/>
 					<label for="stock">Stock</label>
 					<input
-						id="stock"
+						class="stock"
 						type="text"
 						name="stock"
 						placeholder="Enter your stock..."
@@ -108,11 +114,17 @@
 				</div>
 			</div>
 		</main>
-		<div class="admin-h2"><h2>Edit or delete listings</h2></div>
-		<section></section>
+
+		<div id="admin-h2">
+			<h2 class="admin-h2">Modify listings</h2>
+		</div>
+		<aside></aside>
+
 		<footer>
 			<h2>Copyright - 2024</h2>
 		</footer>
 	</body>
-	<script src="admin.js"></script>
+
+	<script src="./admin.js"></script>
+	<script src="./listing.js"></script>
 </html>
