@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="../CSS/listing.css" />
 		<link rel="stylesheet" href="../CSS/admin.css" />
 		<link rel="stylesheet" href="../CSS/form.css" />
+		<link rel="stylesheet" href="../CSS/responsive.css" />
 	</head>
 
 	<body>
@@ -32,7 +33,15 @@
 					name="name"
 					placeholder="Enter your title..."
 				/>
-				<label for="image">Image</label>
+				<label for="image"
+					>Image URL (
+					<a href="https://unsplash.com/fr" target="_blank"
+						>Unsplash</a
+					>
+					,
+					<a href="https://fr.freepik.com/" target="_blank">Freepik</a
+					>)</label
+				>
 				<input
 					id="image"
 					type="url"
@@ -47,21 +56,28 @@
 					name="description"
 					placeholder="Enter your description..."
 				/>
-				<label for="category">Category</label>
-				<input
-					id="category"
-					type="text"
-					name="category"
-					placeholder="Enter your category..."
-				/>
-				<label for="stock">Stock</label>
-				<input
-					id="stock"
-					type="text"
-					name="stock"
-					placeholder="Enter your stock..."
-				/>
-
+				<div class="stock-category">
+					<div class="category-div">
+						<label for="category">Category</label>
+						<select name="category" id="category">
+							aozfaoeufd
+							<option value="Camera">Camera</option>
+							<option value="Microphones">Microphones</option>
+							<option value="Headphone">Headphone</option>
+							<option value="Lighting">Lighting</option>
+							<option value="Lense">Lense</option>
+						</select>
+					</div>
+					<div class="stock-div">
+						<label for="stock">Stock</label>
+						<input
+							id="stock"
+							type="number"
+							name="stock"
+							placeholder="Enter your stock..."
+						/>
+					</div>
+				</div>
 				<button onclick="createListing()">Submit</button>
 			</div>
 			<div class="overlay visibility">
@@ -89,20 +105,28 @@
 						name="description"
 						placeholder="Enter your description..."
 					/>
-					<label for="category">Category</label>
-					<input
-						class="category"
-						type="text"
-						name="category"
-						placeholder="Enter your category..."
-					/>
-					<label for="stock">Stock</label>
-					<input
-						class="stock"
-						type="text"
-						name="stock"
-						placeholder="Enter your stock..."
-					/>
+					<div class="stock-category">
+						<div class="category-div">
+							<label for="category">Category</label>
+							<select name="category" class="category">
+								aozfaoeufd
+								<option value="Camera">Camera</option>
+								<option value="Microphones">Microphones</option>
+								<option value="Headphone">Headphone</option>
+								<option value="Lighting">Lighting</option>
+								<option value="Lense">Lense</option>
+							</select>
+						</div>
+						<div class="stock-div">
+							<label for="stock">Stock</label>
+							<input
+								class="stock"
+								type="number"
+								name="stock"
+								placeholder="Enter your stock..."
+							/>
+						</div>
+					</div>
 					<div class="admin_buttons">
 						<button class="modalBtn" onclick="updateSubmit()">
 							Submit

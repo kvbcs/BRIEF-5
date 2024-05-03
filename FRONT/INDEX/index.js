@@ -13,7 +13,7 @@ let adminBtn = document.querySelector(".adminBtn");
 let rentBtn = document.querySelector(".rentBtn");
 
 if (role === "admin") {
-	adminBtn.classList.remove("visibility");
+	adminBtn.classList.remove("hidden");
 }
 async function getAllListings() {
 	let apiCall = await fetch("http://localhost:4000/listing/all");

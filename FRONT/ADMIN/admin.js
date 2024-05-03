@@ -94,7 +94,7 @@ async function updateSubmit() {
 	if (response.status === 200) {
 		console.log(response);
 		alert("Update success");
-		// window.location.reload();
+		window.location.reload();
 	} else {
 		alert("Update failed");
 	}

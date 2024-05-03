@@ -28,6 +28,7 @@ async function createListing() {
 	console.log(response);
 	if (response.status === 200) {
 		console.log(response);
+		alert("Listing created successfully");
 		window.location.reload();
 	}
 }

@@ -20,10 +20,11 @@ const ctrlCreateListing = async (req, res) => {
 	const description = req.body.description;
 	const category = req.body.category;
 	const stock = req.body.stock;
+
 	try {
 		const values = [name, image, description, category, stock];
 		const sql = `INSERT INTO equipement VALUES (NULL, ?, ?, ?, ?, ?)`;
-		const [rows, fileds] = await pool.execute(sql, values);
+		const [rows] = await pool.execute(sql, values);
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
@@ -34,7 +35,7 @@ const ctrlCreateListing = async (req, res) => {
 
 const ctrlAllListings = async (req, res) => {
 	try {
-		const [rows, fields] = await pool.query("SELECT * FROM equipement");
+		const [rows] = await pool.query("SELECT * FROM equipement");
 		console.log(rows);
 		res.status(200).json(rows);
 	} catch (error) {
@@ -78,7 +79,7 @@ const ctrlDeleteListing = async (req, res) => {
 
 const ctrlUpdateListing = async (req, res) => {
 	const id = req.params.id;
-	const { name, description, image, category, stock } = req.body;
+	const { name, description, image, category, stock} = req.body;
 	let data = [];
 	const values = [];
 
