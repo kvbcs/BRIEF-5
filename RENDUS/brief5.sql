@@ -23,6 +23,7 @@ CREATE TABLE `equipement_rent` (
 CREATE TABLE `equipement` (
   `id` integer PRIMARY KEY,
   `name` varchar(255),
+  `image` varchar(255),
   `description` varchar(255),
   `category` varchar(255),
   `stock` integer

@@ -23,6 +23,7 @@ price integer
 Table equipement {
 id integer [primary key, not null]
 name varchar
+image varchar
 description varchar
 category varchar
 stock integer
